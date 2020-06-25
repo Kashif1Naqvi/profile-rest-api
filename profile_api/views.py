@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status,viewsets
+from rest_framework import status,viewsets,filters
 from rest_framework.authentication import TokenAuthentication
 from .permissions import UserOwnProfile
 from .serializer import HelloSerializer,ProfileSerializer
@@ -104,3 +104,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [UserOwnProfile]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name','email']
