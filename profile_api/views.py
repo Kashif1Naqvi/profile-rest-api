@@ -2,7 +2,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status,viewsets
-from .serializer import HelloSerializer
+from rest_framework.authentication import TokenAuthentication
+from .permissions import UserOwnProfile
+from .serializer import HelloSerializer,ProfileSerializer
+from .models import UserProfile
 class HelloWord(APIView):
     serializer_class = HelloSerializer
     def get(self,request,format=None):
@@ -86,9 +89,18 @@ class HelloViewSets(viewsets.ViewSet):
             "http method":"PATCH",
             status:status.HTTP_200_OK
         })
-        
+
     def destroy(self,request,pk=None):
         return Response({
             "http method":"DELETE",
             status:status.HTTP_204_NO_CONTENT
         })
+
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handling user profile"""
+    serializer_class = ProfileSerializer
+    queryset = UserProfile.objects.all()
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [UserOwnProfile]

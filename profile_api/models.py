@@ -22,8 +22,7 @@ class UserProfileManager(BaseUserManager):
         user.is_staff   = True
         user.save(using=self._db)
         return user
-
-
+        
 
 class UserProfile(AbstractBaseUser,PermissionsMixin):
     """ DATABASE User model for system """
