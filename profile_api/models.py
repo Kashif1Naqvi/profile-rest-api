@@ -57,7 +57,7 @@ class ProfileFeedItem(models.Model):
     )
     status_text = models.CharField(max_length=255)
     created_on  = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         """" create profile object as string """
         return self.status_text

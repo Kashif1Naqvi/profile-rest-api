@@ -5,9 +5,10 @@ from rest_framework import status,viewsets,filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 from rest_framework.authentication import TokenAuthentication
-from .permissions import UserOwnProfile
-from .serializer import HelloSerializer,ProfileSerializer
-from .models import UserProfile
+from rest_framework.permissions import IsAuthenticated
+from .permissions import UserOwnProfile,UserUpdateOwnStatus
+from .serializer import HelloSerializer,ProfileSerializer,ProfileFeedItemSerializer
+from .models import UserProfile,ProfileFeedItem
 
 class HelloWord(APIView):
     serializer_class = HelloSerializer
@@ -113,3 +114,16 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 class UserLoginApiView(ObtainAuthToken):
     """ user login api """
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
+
+class UserProfileFeedItem(viewsets.ModelViewSet):
+    """" User profile feed """
+    authentication_classes = [TokenAuthentication]
+    serializer_class = ProfileFeedItemSerializer
+    permission_classes = [UserUpdateOwnStatus, IsAuthenticated]
+    queryset  = ProfileFeedItem.objects.all()
+
+
+    def perform_create(self,serializer):
+        """ get user to specific profile when loged in"""
+        serializer.save(user_profile=self.request.user)
