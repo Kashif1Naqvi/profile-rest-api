@@ -2,10 +2,13 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status,viewsets,filters
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.settings import api_settings
 from rest_framework.authentication import TokenAuthentication
 from .permissions import UserOwnProfile
 from .serializer import HelloSerializer,ProfileSerializer
 from .models import UserProfile
+
 class HelloWord(APIView):
     serializer_class = HelloSerializer
     def get(self,request,format=None):
@@ -106,3 +109,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [UserOwnProfile]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name','email']
+
+class UserLoginApiView(ObtainAuthToken):
+    """ user login api """
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
