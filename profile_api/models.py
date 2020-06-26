@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
-
+from django.conf import settings
 class UserProfileManager(BaseUserManager):
     def create_user(self,email,name,password=None):
         "Create user profile"
@@ -22,7 +22,7 @@ class UserProfileManager(BaseUserManager):
         user.is_staff   = True
         user.save(using=self._db)
         return user
-        
+
 
 class UserProfile(AbstractBaseUser,PermissionsMixin):
     """ DATABASE User model for system """
@@ -47,3 +47,17 @@ class UserProfile(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         """ Retrive data as string """
         return self.email
+
+
+class ProfileFeedItem(models.Model):
+    """ Create a profile feed item """
+    user_profile = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE
+    )
+    status_text = models.CharField(max_length=255)
+    created_on  = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        """" create profile object as string """
+        return self.status_text
