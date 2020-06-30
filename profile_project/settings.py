@@ -119,4 +119,5 @@ AUTH_USER_MODEL = "profile_api.UserProfile"
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "http://192.168.1.103:3000",
 ]

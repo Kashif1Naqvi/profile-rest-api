@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-size: contain;
+}
+
+
+form{
+  position: absolute;
+  top: auto;
+  bottom: auto;
+  left: 10%;
+  right: 10%;
+  justify-content: center;
+}
+
+form .form-control{
+  border-radius: 0px;
+}
+form label{
+  color: #fff;
+  text-decoration: inherit;
+}
