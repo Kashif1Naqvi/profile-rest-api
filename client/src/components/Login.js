@@ -24,7 +24,7 @@ const Login = (props) => {
 
     if(response.status == 200){
       localStorage.setItem("token",token)
-      props.history.push('/home')
+      props.history.push('/profiles')
     }
   }
 return(

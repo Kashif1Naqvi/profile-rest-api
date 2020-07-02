@@ -6,14 +6,16 @@ import Home from './components/Home'
 import About from './components/About'
 import Signup from './components/Signup'
 import Login from './components/Login'
+import Profile from './components/users/Profile'
 
 const Routes = () => {
   return(
     <Router>
       <div className="container" >
           <Switch>
-            <Route exact path="/home"  component={Home} />
+            <Route exact path="/profiles"  component={Home} />
             <Route exact path="/about"  component={About} />
+            <Route exact path="/profile/:id"  component={Profile} />
             <Route exact path="/"  component={Signup} />
             <Route exact path="/login"  component={Login}/>
           </Switch>

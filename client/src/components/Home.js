@@ -17,10 +17,13 @@ const Home = () => {
     }
     fetchData()
   },[])
-  const userList = users.map((user)=><User {...user} key={user.id} />)
+  const userList = users.map((user)=><User  {...user} key={user.id} />)
   return(
     <div>
-      {userList}
+      <h1 className="text-center text-success " >User Profiles</h1>
+      <div className="row" >
+        {userList}
+      </div>
     </div>
   )
 }
