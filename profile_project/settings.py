@@ -113,11 +113,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 AUTH_USER_MODEL = "profile_api.UserProfile"
 
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "http://192.168.1.103:3000",
+    "http://192.168.0.102:3000",
 ]

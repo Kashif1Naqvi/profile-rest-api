@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {Link} from 'react-router-dom'
 import {api} from '../api'
 const Signup = (props) => {
   const [name ,setName] = useState('')
@@ -19,7 +20,7 @@ const Signup = (props) => {
       mode:'cors',
       body:JSON.stringify(form)
     })
-    if(response.status == 201){
+    if(response.status === 201){
       props.history.push('/login')
     }
   }
@@ -62,6 +63,8 @@ return(
         <button type="submit" className="btn btn-outline-success center " >Join Us!</button>
       </div>
     </form>
+    <p>Already have account? <Link className="btn btn-outline-success " to="/login"  >Login</Link></p>
+
   </div>
 )
 }

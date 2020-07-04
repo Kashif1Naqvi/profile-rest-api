@@ -12,7 +12,7 @@ const User = ({id,name,email}) => {
           <div className="card-body">
             <h4>{name}</h4>
             <p>{email}</p>
-            <Link to={`profile/${id}`} >See more</Link>
+            <Link to={`/profiles/${id}`} >See more</Link>
           </div>
       </div>
     </div>

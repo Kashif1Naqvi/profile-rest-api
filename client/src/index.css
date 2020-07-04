@@ -28,3 +28,7 @@ form label{
   text-decoration: inherit;
   text-shadow: 1px 1px auto;
 }
+Link{
+  text-decoration: none;
+  color: inherit;
+}

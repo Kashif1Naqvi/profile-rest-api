@@ -1,15 +1,17 @@
 import React,{useState} from 'react'
 import {api} from '../api'
+import {Link} from 'react-router-dom'
 const Login = (props) => {
   const [username ,setUsername] = useState('')
   const [password,setPassword] = useState('')
-  console.log(props);
+  const [err,setErr] = useState('')
   const handleSubmit = async (e) =>{
     e.preventDefault()
     const form = {
       username:username,
       password:password,
     }
+
     let response = await fetch(`${api()}/profile_api/login/`,{
       method:'POST',
       headers:{
@@ -18,11 +20,10 @@ const Login = (props) => {
       mode:'cors',
       body:JSON.stringify(form)
     })
-    console.log(response);
     let data  = await response.json()
     let token = data.token
-
-    if(response.status == 200){
+    setErr(data.non_field_errors)
+    if(response.status === 200){
       localStorage.setItem("token",token)
       props.history.push('/profiles')
     }
@@ -57,6 +58,8 @@ return(
         <button type="submit" className="btn btn-outline-success center " >Login</button>
       </div>
     </form>
+    <p>{err}</p>
+    <p>Already have not account yet? Then <Link className="btn btn-outline-success " to="/signup"  >Join us</Link></p>
   </div>
 )
 }
