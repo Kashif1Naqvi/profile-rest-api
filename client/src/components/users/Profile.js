@@ -11,6 +11,23 @@ const [err,setErr] = useState('')
     localStorage.clear()
     props.history.push('/profiles')
   }
+  const Delete =async () => {
+      let response = await fetch(`http://192.168.0.102:8000/profile_api/profile/${props.match.params.id}`,{
+        method:'DELETE',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':`Token ${localStorage.token}`
+        },
+        mode:'cors',
+        referrer:'no-referrer',
+        credentials:'same-origin',
+        body:JSON.stringify(user)
+      })
+      if(response.status=== 204){
+        alert("Your profile delete now")
+        props.history.push('/profiles')
+      }
+  }
 
   useEffect(()=>{
       const fetchData = async () => {
@@ -43,7 +60,7 @@ const [err,setErr] = useState('')
     {
       show === true ?
         <div className="text-success" >
-          <h1>Profile</h1>
+          <h1>Welcome {user.name}!</h1>
           <img
             src="https://images.pexels.com/photos/1172207/pexels-photo-1172207.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             alt="avatar"
@@ -51,7 +68,9 @@ const [err,setErr] = useState('')
             />
           <p>{user.name}</p>
           <p>{user.email}</p>
-          <button onClick={logout} className="btn btn-success" >Logout</button>
+          <button onClick={logout} className="btn btn-success" >Logout</button><br /><br />
+          <button className='btn btn-info btn-sm'>Edit</button>
+          <button onClick={Delete} className='btn btn-danger btn-sm'  >Delete</button>
         </div>:<div>
           <p className="alert alert-danger">{err}</p>
           <Link className="alert alert-info" to="/profiles">Back to profiles</Link>
