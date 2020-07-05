@@ -22,6 +22,16 @@ const [err,setErr] = useState('')
       }
     })
   }
+  const Patch = () => {
+    props.history.push({
+      pathname:`/profiles/patch/${user.id}`,
+      state:{
+        name:user.name,
+        email:user.email,
+        password:user.password,
+      }
+    })
+  }
 
   const Delete =async () => {
       let response = await fetch(`http://192.168.0.102:8000/profile_api/profile/${props.match.params.id}`,{
@@ -82,6 +92,7 @@ const [err,setErr] = useState('')
             <button onClick={logout} className="btn btn-success" >Logout</button><br /><br />
             <button onClick={Delete} className='btn btn-danger btn-sm'  >Delete</button>
             <button onClick={Edit} className='btn btn-info btn-sm'>Edit</button>
+            <button onClick={Patch} className='btn btn-success btn-sm'>Patch</button>
         </div>
 
         :<div>

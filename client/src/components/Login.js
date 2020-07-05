@@ -59,7 +59,7 @@ return(
       </div>
     </form>
     <p>{err}</p>
-    <p>Already have not account yet? Then <Link className="btn btn-outline-success " to="/signup"  >Join us</Link></p>
+    <p>Already have not account yet? Then <Link className="btn btn-outline-success " to="/"  >Join us</Link></p>
   </div>
 )
 }

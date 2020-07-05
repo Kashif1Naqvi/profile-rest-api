@@ -7,6 +7,7 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import Profile from './components/users/Profile'
 import EditProfile from './components/users/EditProfile'
+import PatchProfile from './components/users/PatchProfile'
 
 const Routes = () => {
   return(
@@ -17,6 +18,7 @@ const Routes = () => {
             <Route exact path="/about"  component={About} />
             <Route exact path="/profiles/:id"  component={Profile} />
             <Route exact path="/profiles/edit/:id/"  component={EditProfile} />
+            <Route exact path="/profiles/patch/:id/"  component={PatchProfile} />
             <Route exact path="/"  component={Signup} />
             <Route exact path="/login"  component={Login}/>
           </Switch>
