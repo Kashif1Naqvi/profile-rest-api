@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import {Redirect} from 'react-router-dom'
 import {api} from '../../api'
 const EditProfile = (props) => {
   const object = props.history.location.state

@@ -25,7 +25,13 @@ const Login = (props) => {
     setErr(data.non_field_errors)
     if(response.status === 200){
       localStorage.setItem("token",token)
-      props.history.push('/profiles')
+      props.history.push({
+        pathname:'/profiles',
+        state:{
+          email:username
+        }
+      }
+      )
     }
   }
 return(

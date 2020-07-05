@@ -32,3 +32,11 @@ Link{
   text-decoration: none;
   color: inherit;
 }
+
+.form-input{
+  height: 35px;
+  margin:0px 2px;
+  background-color:white;
+  border-style: ridge;
+  border-color:lightgreen;
+}

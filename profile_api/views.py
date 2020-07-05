@@ -18,7 +18,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [UserOwnProfile]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name','email']
-
+    
 class UserLoginApiView(ObtainAuthToken):
     """ user login api """
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES

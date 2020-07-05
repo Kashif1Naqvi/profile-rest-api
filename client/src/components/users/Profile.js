@@ -6,7 +6,6 @@ const [user,setUser] = useState({})
 const [show,setShow] = useState(false)
 const [err,setErr] = useState('')
 
-
   const logout = () => {
     localStorage.clear()
     props.history.push('/profiles')
@@ -92,9 +91,9 @@ const [err,setErr] = useState('')
             <button onClick={logout} className="btn btn-success" >Logout</button><br /><br />
             <button onClick={Delete} className='btn btn-danger btn-sm'  >Delete</button>
             <button onClick={Edit} className='btn btn-info btn-sm'>Edit</button>
-            <button onClick={Patch} className='btn btn-success btn-sm'>Patch</button>
+            <button onClick={Patch} className='btn btn-success btn-sm'>Patch</button><br/><br/>
+            <Link className="alert alert-info" to="/profiles">Back to profiles</Link>
         </div>
-
         :<div>
           <p className="alert alert-danger">{err}</p>
           <Link className="alert alert-info" to="/profiles">Back to profiles</Link>

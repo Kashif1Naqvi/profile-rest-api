@@ -59,7 +59,6 @@ const PatchProfile = (props) => {
                 placeholder="Enter a Password"
                 defaultValue={password}
                 onChange={e=>setPassword(e.target.value)}
-                
               />
           </div>
           <div className="form-group">
