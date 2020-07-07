@@ -34,6 +34,8 @@ const Home = (props) => {
           let data =await response.json()
           setquery(data)
       }
+
+
   const userList = users.map((user)=><User  {...user} key={user.id} />)
   return(
     <div>
@@ -51,11 +53,20 @@ const Home = (props) => {
             </div>
         </div>
         {
-          query === '' ? <div className="row">{userList}</div>:<div className="row" >{
-            query.map((query)=><Query {...query} key={query.id} />)
+          query === '' ? <div className="row">{userList}</div>:<div  >{
+           query == false ? <div className="text-center  " >
+                    <p >Your search - <del className="text-info" >{search}</del> - did not match any documents.</p>
+                    <p>Suggestions:</p>
+                    <ul className="navbar-nav" >
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try different keywords.</li>
+                        <li>Try more general keywords.</li>
+                        <li>Try fewer keywords. </li>
+                    </ul>
+              </div>
+                : <div className="row">{query.map((query)=> <Query {...query} key={query.id} /> )}</div>
           }</div>
         }
-
     </div>
   )
 }
