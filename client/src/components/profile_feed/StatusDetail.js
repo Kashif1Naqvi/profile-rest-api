@@ -8,8 +8,6 @@ const StatusDetail = (props) => {
         <p>{props.status.status_text}</p>
         <Link to={`/profiles/${props.status.user_profile}/status-detail/${props.status.id}`} >Show more</Link>
         <hr />
-
-
       </div>
   )
 }
