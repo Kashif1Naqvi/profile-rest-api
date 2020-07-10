@@ -18,7 +18,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [UserOwnProfile]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name','email']
-    
+
 class UserLoginApiView(ObtainAuthToken):
     """ user login api """
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
@@ -29,7 +29,7 @@ class UserProfileFeedItem(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
     serializer_class = ProfileFeedItemSerializer
     permission_classes = [UserUpdateOwnStatus, IsAuthenticated]
-    queryset  = ProfileFeedItem.objects.all()
+    queryset  = ProfileFeedItem.objects.all().order_by('-created_on')
 
 
     def perform_create(self,serializer):

@@ -4,6 +4,7 @@ import {api} from '../api'
 import User from './users/User'
 import Query from './users/Query'
 const Home = (props) => {
+  
   const [users,setUser] = useState([])
   const [search,setSearch] = useState('')
   const [query,setquery] = useState('')

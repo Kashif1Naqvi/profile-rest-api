@@ -75,7 +75,6 @@ const [err,setErr] = useState('')
       }
       fetchData()
   },[])
-
   return(
     <div className="text-center mt-5 " >
     {
@@ -98,7 +97,7 @@ const [err,setErr] = useState('')
 
           </div>
           <div className="col-12 col-sm-6 col-md-6 col-xl-6 col-lg-6 text-success">
-            <h1>Status {user.name}!</h1>
+            <h3>Status {user.name}!</h3>
             <UserFeed {...props} />
           </div>
 

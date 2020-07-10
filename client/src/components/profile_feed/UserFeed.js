@@ -1,6 +1,8 @@
 import React ,{useState,useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import {api} from '../../api'
 import StatusList from './StatusList'
+import CreateStatus from './CreateStatus'
 const UserFeed = (props) => {
   const [status,setStatus] = useState([])
 
@@ -19,6 +21,7 @@ const UserFeed = (props) => {
     }
     fetchData()
   },[])
+
     return(
       <div>
         <StatusList

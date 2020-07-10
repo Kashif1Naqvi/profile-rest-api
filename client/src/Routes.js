@@ -8,8 +8,10 @@ import Login from './components/Login'
 import Profile from './components/users/Profile'
 import EditProfile from './components/users/EditProfile'
 import PatchProfile from './components/users/PatchProfile'
+import CreateStatus from './components/profile_feed/CreateStatus'
+import SingleStatus from './components/profile_feed/SingleStatus'
 
-const Routes = () => {
+const Routes = (props) => {
   return(
     <Router>
       <div className="container" >
@@ -21,6 +23,8 @@ const Routes = () => {
             <Route exact path="/profiles/patch/:id/"  component={PatchProfile} />
             <Route exact path="/"  component={Signup} />
             <Route exact path="/login"  component={Login}/>
+            <Route exact path="/profiles/:id/status"  component={CreateStatus}/>
+            <Route exact path="/profiles/:id/status-detail/:id/"  component={SingleStatus}/>
           </Switch>
       </div>
     </Router>

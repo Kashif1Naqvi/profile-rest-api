@@ -1,13 +1,16 @@
-import React,{useEffect} from 'react'
-
-
+import React,{useEffect,useState} from 'react'
+import Status from './Status'
+import {Link} from 'react-router-dom'
+import {api} from '../../api'
 const StatusDetail = (props) => {
-  console.log(props);
   return(
-    <div>
-      {props.status.status_text}
-      <hr />
-    </div>
+      <div>
+        <p>{props.status.status_text}</p>
+        <Link to={`/profiles/${props.status.user_profile}/status-detail/${props.status.id}`} >Show more</Link>
+        <hr />
+
+
+      </div>
   )
 }
 
