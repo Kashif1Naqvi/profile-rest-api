@@ -1,11 +1,12 @@
 import React,{useEffect,useState} from 'react'
 import UserFeed from '../profile_feed/UserFeed'
-import {Link} from 'react-router-dom'
+import {Link,useParams} from 'react-router-dom'
 import {api} from '../../api'
 const Profile = (props) => {
 const [user,setUser] = useState({})
 const [show,setShow] = useState(false)
 const [err,setErr] = useState('')
+  let {id} = useParams()
 
   const logout = () => {
     localStorage.clear()
@@ -34,7 +35,7 @@ const [err,setErr] = useState('')
   }
 
   const Delete =async () => {
-      let response = await fetch(`http://192.168.0.102:8000/profile_api/profile/${props.match.params.id}`,{
+      let response = await fetch(`http://192.168.0.102:8000/profile_api/profile/${id}`,{
         method:'DELETE',
         headers:{
           'Content-Type':'application/json',
@@ -53,7 +54,7 @@ const [err,setErr] = useState('')
 
   useEffect(()=>{
       const fetchData = async () => {
-        let response = await fetch(`${api()}/profile_api/profile/${props.match.params.id}/`,{
+        let response = await fetch(`${api()}/profile_api/profile/${id}/`,{
           method:"GET",
           cache:"no-cache",
           credentials:'same-origin',
@@ -74,7 +75,7 @@ const [err,setErr] = useState('')
         }
       }
       fetchData()
-  },[])
+  })
   return(
     <div className="text-center mt-5 " >
     {

@@ -2,9 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import StatusDetail from './StatusDetail'
-import CreateStatus from './CreateStatus'
 const StatusList = (props) => {
-  const filterList = props.status.filter(status=>status.user_profile == props.props.id )
+  const filterList = props.status.filter(status=> status.user_profile.toString() == props.props.id.toString()   )  
   const subList    = filterList.map(status=><StatusDetail status={status} key={status.id} />)
   return(
     <div>

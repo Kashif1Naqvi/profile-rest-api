@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react'
+import React,{useState} from 'react'
 import {api} from '../../api'
 
 const CreateStatus = (props) => {
@@ -25,6 +25,7 @@ console.log(props);
       props.history.push(`/profiles/${props.match.params.id}`)
     }
 }
+console.log(status_text);
   return(
     <form className="m-5 text-center" onSubmit={handleSubmit}>
       <div className="form-group" >

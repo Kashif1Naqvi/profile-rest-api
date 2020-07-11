@@ -4,7 +4,7 @@ import {api} from '../api'
 import User from './users/User'
 import Query from './users/Query'
 const Home = (props) => {
-  
+
   const [users,setUser] = useState([])
   const [search,setSearch] = useState('')
   const [query,setquery] = useState('')
@@ -36,7 +36,6 @@ const Home = (props) => {
           setquery(data)
       }
 
-
   const userList = users.map((user)=><User  {...user} key={user.id} />)
   return(
     <div>
@@ -55,7 +54,7 @@ const Home = (props) => {
         </div>
         {
           query === '' ? <div className="row">{userList}</div>:<div  >{
-           query == false ? <div className="text-center  " >
+           query === false ? <div className="text-center  " >
                     <p >Your search - <del className="text-info" >{search}</del> - did not match any documents.</p>
                     <p>Suggestions:</p>
                     <ul className="navbar-nav" >

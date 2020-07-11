@@ -1,7 +1,5 @@
-import React,{useEffect,useState} from 'react'
-import Status from './Status'
+import React from 'react'
 import {Link} from 'react-router-dom'
-import {api} from '../../api'
 const StatusDetail = (props) => {
   return(
       <div>

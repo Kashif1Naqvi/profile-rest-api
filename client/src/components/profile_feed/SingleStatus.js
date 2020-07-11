@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {api} from '../../api'
 const SingleStatus =(props) => {
   const [status,setStatus] = useState({})
-  const [detail,setDetail] = useState({})
   const id = props.match.params.id
   useEffect(()=>{
     const fetchData = async () => {
@@ -18,7 +18,7 @@ const SingleStatus =(props) => {
       setStatus(data)
     }
     fetchData()
-  })
+  },[])
 
   const handleDelete =async () => {
     const response = await fetch(`${api()}/profile_api/feed/${id}/`,{
@@ -34,15 +34,15 @@ const SingleStatus =(props) => {
       props.history.push(`/profiles/${status.user_profile}`)
     }
   }
-  console.log(props);
   return(
     <div className="container">
     <div className="m-5 text-center" >
         <h1 className="text-info" >My Status</h1>
         <p><b>Status:</b>{status.status_text}</p>
-        <button onClick={handleDelete} >Delete</button>
-      </div>
+        <button className="btn btn-danger" onClick={handleDelete} >Delete</button>
+        <Link className="btn btn-info" to={`/profiles/${status.user_profile}/status-edit/${status.id}`} >Edit</Link>
 
+      </div>
     </div>
   )
 }

@@ -10,6 +10,9 @@ import EditProfile from './components/users/EditProfile'
 import PatchProfile from './components/users/PatchProfile'
 import CreateStatus from './components/profile_feed/CreateStatus'
 import SingleStatus from './components/profile_feed/SingleStatus'
+import EditStatus from './components/profile_feed/EditStatus'
+
+
 
 const Routes = (props) => {
   return(
@@ -25,6 +28,7 @@ const Routes = (props) => {
             <Route exact path="/login"  component={Login}/>
             <Route exact path="/profiles/:id/status"  component={CreateStatus}/>
             <Route exact path="/profiles/:id/status-detail/:id/"  component={SingleStatus}/>
+            <Route exact path="/profiles/:id/status-edit/:id/"  component={EditStatus}/>
           </Switch>
       </div>
     </Router>
