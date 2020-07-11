@@ -91,10 +91,7 @@ const [err,setErr] = useState('')
               <p>{user.name}</p>
               <p>{user.email}</p>
               <button onClick={logout} className="btn btn-success" >Logout</button><br /><br />
-              <button onClick={Delete} className='btn btn-danger btn-sm'  >Delete</button>
-              <button onClick={Edit} className='btn btn-info btn-sm'>Edit</button>
-              <button onClick={Patch} className='btn btn-success btn-sm'>Patch</button><br/><br/>
-              <Link className="alert alert-info" to="/profiles">Back to profiles</Link>
+              
 
           </div>
           <div className="col-12 col-sm-6 col-md-6 col-xl-6 col-lg-6 text-success">

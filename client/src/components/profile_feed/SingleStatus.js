@@ -39,8 +39,9 @@ const SingleStatus =(props) => {
     <div className="m-5 text-center" >
         <h1 className="text-info" >My Status</h1>
         <p><b>Status:</b>{status.status_text}</p>
-        <button className="btn btn-danger" onClick={handleDelete} >Delete</button>
+        <button className="btn btn-danger" onClick={handleDelete} >Delete data</button>
         <Link className="btn btn-info" to={`/profiles/${status.user_profile}/status-edit/${status.id}`} >Edit</Link>
+        <Link className="btn btn-success" to={`/profiles/${status.user_profile}/status-patch/${status.id}`} >Patch</Link>
 
       </div>
     </div>

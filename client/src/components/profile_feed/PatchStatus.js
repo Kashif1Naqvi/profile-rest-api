@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { useParams,Link } from 'react-router-dom'
 import {api} from '../../api'
 
-const EditStatus = (props) => {
+const PatchStatus = (props) => {
   const [status_text,setStatus] = useState({})
   const {id} = useParams()
   useEffect(()=>{
@@ -27,7 +27,7 @@ const EditStatus = (props) => {
     }
 
     let response  = await fetch(`${api()}/profile_api/feed/${id}/`,{
-      method:'PUT',
+      method:'PATCH',
       headers:{
         'Content-Type':'application/json',
         'Authorization':`Token ${localStorage.token}`,
@@ -35,7 +35,7 @@ const EditStatus = (props) => {
       mode:'cors',
       body:JSON.stringify(form)
     })
-
+    console.log(response);
     let data = await response.json()
     setStatus(data.status_text)
     if(response.status === 200){
@@ -54,10 +54,10 @@ const EditStatus = (props) => {
           className="form-control"
           />
       </div>
-      <button type="submit" className="btn btn-success" >Edit</button>
+      <button type="submit" className="btn btn-success" >Patch</button>
       <Link className="alert alert-info" to={`/profiles/${status_text.user_profile}/`}>Back to profiles</Link>
     </form>
   )
 }
 
-export default EditStatus
+export default PatchStatus
