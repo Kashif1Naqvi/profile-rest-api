@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
+import {useParams,useHistory} from 'react-router-dom'
 import {api} from '../../api'
 
-const CreateStatus = (props) => {
+const CreateStatus = () => {
+  const {id} = useParams()
+  const history = useHistory()
 
-console.log(props);
   const [status_text,setStatus] = useState('')
   const handleSubmit = async e => {
     e.preventDefault()
@@ -22,7 +24,7 @@ console.log(props);
     let data = await response.json()
     setStatus(data.status_text)
     if(response.status === 201){
-      props.history.push(`/profiles/${props.match.params.id}`)
+      history.push(`/profiles/${id}`)
     }
 }
 console.log(status_text);

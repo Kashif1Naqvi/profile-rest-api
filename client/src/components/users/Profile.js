@@ -1,20 +1,21 @@
 import React,{useEffect,useState} from 'react'
 import UserFeed from '../profile_feed/UserFeed'
-import {Link,useParams} from 'react-router-dom'
+import {Link,useParams,useHistory} from 'react-router-dom'
 import {api} from '../../api'
 const Profile = (props) => {
 const [user,setUser] = useState({})
 const [show,setShow] = useState(false)
 const [err,setErr] = useState('')
-  let {id} = useParams()
 
+  let {id} = useParams()
+  const history = useHistory()
   const logout = () => {
     localStorage.clear()
     props.history.push('/profiles')
   }
 
   const Edit = () => {
-    props.history.push({
+    history.push({
       pathname:`/profiles/edit/${user.id}`,
       state:{
         name:user.name,
@@ -24,7 +25,7 @@ const [err,setErr] = useState('')
     })
   }
   const Patch = () => {
-    props.history.push({
+    history.push({
       pathname:`/profiles/patch/${user.id}`,
       state:{
         name:user.name,
@@ -48,34 +49,35 @@ const [err,setErr] = useState('')
       })
       if(response.status=== 204){
         alert("Your profile delete now")
-        props.history.push('/profiles')
+        history.push('/profiles')
       }
   }
 
   useEffect(()=>{
-      const fetchData = async () => {
-        let response = await fetch(`${api()}/profile_api/profile/${id}/`,{
-          method:"GET",
-          cache:"no-cache",
-          credentials:'same-origin',
-          redirect: "follow",
-          referrer: "no-referrer",
-          headers:{
-            'Content-Type': 'application/json',
-            'Authorization':`Token ${localStorage.token}`,
-          } ,
-          mode:'cors'
-        })
-        let data  = await response.json()
-        if(response.status===200){
-            setUser(data)
-            setShow(true)
-        }else{
-            setErr(data.detail)
-        }
+    const fetchData = async () => {
+      let response = await fetch(`${api()}/profile_api/profile/${id}/`,{
+        method:"GET",
+        cache:"no-cache",
+        credentials:'same-origin',
+        redirect: "follow",
+        referrer: "no-referrer",
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization':`Token ${localStorage.token}`,
+        } ,
+        mode:'cors'
+      })
+      let data  = await response.json()
+      if(response.status===200){
+          setUser(data)
+          setShow(true)
+      }else{
+          setErr(data.detail)
       }
-      fetchData()
-  })
+    }
+      fetchData()}
+    ,[id])
+
   return(
     <div className="text-center mt-5 " >
     {
@@ -90,8 +92,11 @@ const [err,setErr] = useState('')
                 />
               <p>{user.name}</p>
               <p>{user.email}</p>
-              <button onClick={logout} className="btn btn-success" >Logout</button><br /><br />
-              
+              <button onClick={logout} className="btn btn-sm  btn-success" >Logout</button><br /><br />
+              <button onClick={Edit} className="btn btn-sm  btn-info" >Edit Profile</button>
+              <button onClick={Delete} className="btn btn-sm  btn-danger" >Delete Profile</button>
+              <button onClick={Patch} className="btn btn-sm  btn-info" >Patch profile</button>
+              <Link className="btn btn-success btn-sm " to="/profiles">Back to profiles</Link>
 
           </div>
           <div className="col-12 col-sm-6 col-md-6 col-xl-6 col-lg-6 text-success">

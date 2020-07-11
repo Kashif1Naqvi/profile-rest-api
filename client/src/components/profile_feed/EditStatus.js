@@ -16,10 +16,11 @@ const EditStatus = (props) => {
         mode:'cors'
       })
       let data = await response.json()
+      console.log(data);
       setStatus(data)
     }
     fetchData()
-  },[])
+  },[id])
   const handleSubmit = async e => {
     e.preventDefault()
     let form = {

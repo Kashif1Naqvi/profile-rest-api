@@ -1,24 +1,30 @@
 import React,{useState,useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useParams,useHistory} from 'react-router-dom'
 import {api} from '../../api'
 const SingleStatus =(props) => {
   const [status,setStatus] = useState({})
-  const id = props.match.params.id
+  const history = useHistory()
+  const {id} = useParams()
+
   useEffect(()=>{
-    const fetchData = async () => {
-      let response = await fetch(`${api()}/profile_api/feed/${id}/`,{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json',
-          'Authorization':`Token ${localStorage.token}`
-        },
-        mode:'cors'
-      })
-      let data = await response.json()
-      setStatus(data)
-    }
-    fetchData()
-  },[])
+      const fetchData = async () => {
+        let response = await fetch(`${api()}/profile_api/feed/${id}/`,{
+          method:'GET',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Token ${localStorage.token}`
+          },
+          mode:'cors'
+        })
+        let data = await response.json()
+        setStatus(data)
+      }
+      fetchData()
+  },[id])
+
+  const GoBack = () => {
+    return history.goBack()
+  }
 
   const handleDelete =async () => {
     const response = await fetch(`${api()}/profile_api/feed/${id}/`,{
@@ -41,8 +47,8 @@ const SingleStatus =(props) => {
         <p><b>Status:</b>{status.status_text}</p>
         <button className="btn btn-danger" onClick={handleDelete} >Delete data</button>
         <Link className="btn btn-info" to={`/profiles/${status.user_profile}/status-edit/${status.id}`} >Edit</Link>
-        <Link className="btn btn-success" to={`/profiles/${status.user_profile}/status-patch/${status.id}`} >Patch</Link>
-
+        <Link className="btn btn-success" to={`/profiles/${status.user_profile}/status-patch/${status.id}`} >Patch</Link><br/><br/>
+        <button className="btn btn-success" onClick={GoBack} >Go Back</button>
       </div>
     </div>
   )

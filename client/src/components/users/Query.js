@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 const Query = ({id,name,email}) => {
-  console.log("name",name);
   return(
     <div className="col col-sm-4 col-md-4 col-lg-4 col-xl-4 " >
       <div className="card">

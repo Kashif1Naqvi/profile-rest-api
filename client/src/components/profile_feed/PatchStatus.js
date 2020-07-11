@@ -19,7 +19,7 @@ const PatchStatus = (props) => {
       setStatus(data)
     }
     fetchData()
-  },[])
+  },[id])
   const handleSubmit = async e => {
     e.preventDefault()
     let form = {

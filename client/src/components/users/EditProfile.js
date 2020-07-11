@@ -1,10 +1,15 @@
 import React,{useState} from 'react'
+import { useLocation,useHistory,useParams } from 'react-router-dom'
 import {api} from '../../api'
 const EditProfile = (props) => {
-  const object = props.history.location.state
+  const object = useLocation().state
+  const history = useHistory()
+  const {id} = useParams()
   const [name ,setName] = useState(object.name)
   const [email,setEmail] = useState(object.email)
   const [password,setPassword] = useState(object.password)
+
+
   const handleEdit =async (e) => {
     e.preventDefault()
     const form ={
@@ -12,7 +17,7 @@ const EditProfile = (props) => {
       email:email,
       password:password
     }
-    let response = await fetch(`${api()}/profile_api/profile/${props.match.params.id}/`,{
+    let response = await fetch(`${api()}/profile_api/profile/${id}/`,{
       method:'PUT',
       headers:{
         'Content-Type':'application/json',
@@ -25,7 +30,7 @@ const EditProfile = (props) => {
     })
 
     if(response.status===200){
-      props.history.push(`/profiles/${props.match.params.id}`)
+      history.push(`/profiles/${id}`)
     }
   }
     return(
