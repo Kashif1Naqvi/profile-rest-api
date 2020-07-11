@@ -8,7 +8,7 @@ every user
 
 CREATE ACCOUNT 
 LOGIN 
-when user login then token genrated for use in the  form of object
+when user login then token generated for use in the  form of object
 
 User see all users profiles if he/she cannot be LOGIN
 but cannot access any user Profile because I add restriction only 
@@ -21,7 +21,7 @@ User see all profiles but if click any profile ```see more``` then show error li
 If user Login with username and password then redirect to profile route not private it's public 
 user find own profile when click that profile.
 Then show user profile and login user see permissions for DELETING,UPDATING ,PATCHING,AND GOback button who help to user for performing a specific actions.
-When user login and see profile user also create a status active or in meeting any thing else according to his/her requirments.
+When user login and see profile user also create a status active or in meeting any thing else according to his/her requirements.
 when click any status then move forward to single status then their user edit update or delete or patch the request in next components .
 if user done their work then redirect to profile/user_id link.
 
